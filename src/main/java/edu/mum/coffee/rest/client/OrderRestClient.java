@@ -21,19 +21,19 @@ public class OrderRestClient {
 	RestTemplate restTemplate;
 	
 	public List<Order> getAllOrder(){
-		return Arrays.asList(restTemplate.getForObject(REST_SERVICE_URI + "http://localhost:8080/orderRest/getAllOrder", Order[].class));
+		return Arrays.asList(restTemplate.getForObject(REST_SERVICE_URI + "/order", Order[].class));
 	}
 	
 	public Order getOrder(int id){
-		return restTemplate.getForObject("http://localhost:8080/orderRest/getOrder/"+ id, Order.class);
+		return restTemplate.getForObject(REST_SERVICE_URI + "/order/"+ id, Order.class);
 	}
 	
 	public List<Order> getOrderByPerson(Person person){
-		return Arrays.asList(restTemplate.getForObject("http://localhost:8080/orderRest/getOrderByPerson/" + person.getId(), Order[].class));
+		return Arrays.asList(restTemplate.getForObject(REST_SERVICE_URI + "/orderByPerson/" + person.getId(), Order[].class));
 	}
 	
 	public void createOrder(Order order){
-		restTemplate.postForObject("http://localhost:8080/orderRest/saveOrder", order, Order.class);
+		restTemplate.postForObject(REST_SERVICE_URI + "/order", order, Order.class);
 	}
 	
 	
