@@ -19,6 +19,16 @@ public class Orderline {
 	private Product product;
 	@ManyToOne
 	private Order order;
+	
+	public Orderline(){
+		
+	}
+	
+	public Orderline(int quantity, Product product) {
+		super();
+		this.quantity = quantity;
+		this.product = product;
+	}
 
 	public int getQuantity() {
 		return quantity;

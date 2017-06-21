@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import edu.mum.product.domain.Address;
-import edu.mum.product.domain.Person;
-import edu.mum.product.domain.Product;
-import edu.mum.restclient.PersonRestClient;
+import edu.mum.coffee.domain.Address;
+import edu.mum.coffee.domain.Person;
+import edu.mum.coffee.rest.client.PersonRestClient;
 
 @Controller
 @SessionAttributes(value={"order", "person"})
