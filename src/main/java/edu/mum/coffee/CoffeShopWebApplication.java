@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class CoffeShopApplication {
+public class CoffeShopWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CoffeShopApplication.class, args);
+		SpringApplication.run(CoffeShopWebApplication.class, args);
 	}
 	
 	@Bean
