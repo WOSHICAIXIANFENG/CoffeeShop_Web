@@ -13,7 +13,6 @@ import edu.mum.coffee.domain.ProductType;
 import edu.mum.coffee.rest.client.PersonRestClient;
 import edu.mum.coffee.rest.client.ProductRestClient;
 
-
 @Controller
 @SessionAttributes(value={"order", "person"})
 public class ProductController {

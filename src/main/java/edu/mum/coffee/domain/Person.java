@@ -1,23 +1,15 @@
 package edu.mum.coffee.domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
-	@Id
-	@GeneratedValue
+	
+
 	private long id;
 	private String firstName;
 	private String lastName;
 	private String email;
-	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	private String phone;
 	private boolean enable;

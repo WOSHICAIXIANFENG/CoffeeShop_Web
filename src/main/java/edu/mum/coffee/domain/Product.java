@@ -1,21 +1,15 @@
 package edu.mum.coffee.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
-	@Id
-	@GeneratedValue
+
 	private int id;
 	private String productName;
 	private String description;
 	private double price;
-	@Enumerated(EnumType.STRING)
 	private ProductType productType;
 
 	public Product() {
