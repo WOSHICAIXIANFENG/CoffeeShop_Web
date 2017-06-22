@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -12,6 +14,7 @@ public class Order {
 
 
 	private int id;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date orderDate;
 	private List<Orderline> orderLines = new ArrayList<Orderline>();
 	private Person person;
@@ -74,4 +77,9 @@ public class Order {
 		orderLines.clear();
 	}
 
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", orderDate=" + orderDate + ", orderLines=" + orderLines + ", person=" + person
+				+ "]";
+	}
 }

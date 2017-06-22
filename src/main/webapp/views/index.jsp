@@ -7,14 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-products:<br/>
-<a href="/createProduct">Create</a>
-<a href="/listProducts">List</a><br/><br/>
-persons:<br/>
-<a href="/createPerson">Create</a>
-<a href="/listPersons">List</a>
-orders:<br/>
-<a href="/createOrder">Create</a>
-<a href="/listOrder">List orders</a><br/><br/>
+<h2>CoffeeShop Web Application</h2>
+<br/>
+
+<a href="/productlist">Products Dashboard</a><br/><br/>
+<hr/>
+<a href="/personlist">Persons Dashboard</a><br/><br/>
+<hr/>
+<a href="/orderlist">Orders Dashboard</a><br/><br/>
+<hr/>
 </body>
 </html>

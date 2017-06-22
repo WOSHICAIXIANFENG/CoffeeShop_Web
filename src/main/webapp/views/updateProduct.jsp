@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<fieldset>
+<legend>EDIT ONE PRODUCT</legend>
 	<form:form modelAttribute="product" action="/admin/updateProductAndSave">
 		<c:if test="${product.id != null }">
 			<form:hidden path="id" />
@@ -37,5 +39,6 @@
 			</tr>
 		</table>
 	</form:form>
+</fieldset>
 </body>
 </html>

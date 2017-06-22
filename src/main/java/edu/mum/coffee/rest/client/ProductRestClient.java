@@ -1,5 +1,6 @@
 package edu.mum.coffee.rest.client;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,8 +21,11 @@ public class ProductRestClient{
 	
 	public List<Product> getAllProductList(){	
 		Product[] products = restTemplate.getForObject(REST_SERVICE_URI + "/product/", Product[].class);
-		List<Product> prods = Arrays.asList(products);
-		return prods;
+		if (products != null) {
+			List<Product> prods = Arrays.asList(products);
+			return prods;
+		}
+		return new ArrayList<>();	
 	}
 	
 	public Product getProduct(int id){

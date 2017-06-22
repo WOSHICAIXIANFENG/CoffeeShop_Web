@@ -80,4 +80,9 @@ public class Person {
 		this.phone = phone;
 	}
 
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", address=" + address + ", phone=" + phone + ", enable=" + enable + "]";
+	}
 }

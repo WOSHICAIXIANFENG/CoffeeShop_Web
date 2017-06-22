@@ -21,7 +21,7 @@ public class HomeController {
 	public String getHome(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String name = auth.getName();
-	    if(name.equals("yeerick")){
+	    if(name.equals("xianfeng")){
 	    	model.addAttribute("person", personRestClient.getPerson(1));
 	    } else if(name.equals("orlando")){
 	    	model.addAttribute("person", personRestClient.getPerson(2));
@@ -35,7 +35,7 @@ public class HomeController {
 	
 	@GetMapping({"/", "/index", "/home"})
 	public String homePage() {
-		return "home";
+		return "index";
 	}
 
 	@GetMapping({"/secure"})

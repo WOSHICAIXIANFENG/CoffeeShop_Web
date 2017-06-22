@@ -10,20 +10,20 @@
 </head>
 <body>
 <c:if test="${empty requestScope.persons }">
-	No products!
+	No Persons!
 </c:if>
 <c:if test="${!empty requestScope.persons }">
-	<table><tr>
-			<th>id</th>
-			<th>firstName</th>
-			<th>lastName</th>
-			<th>email</th>
-			<th>phone</th>
-			<th>city</th>
-			<th>state</th>
-			<th>country</th>
-			<th>zipcode</th>
-			<th>enable</th>
+	<table border="1"><tr>
+			<th>Id</th>
+			<th>FirstName</th>
+			<th>LastName</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>City</th>
+			<th>State</th>
+			<th>Country</th>
+			<th>ZIP Code</th>
+			<th>Enable</th>
 		</tr>
 		<c:forEach items="${requestScope.persons }" var="person">
 		<tr>
@@ -37,11 +37,63 @@
 			<td>${person.address.country} </td>			
 			<td>${person.address.zipcode} </td>			
 			<td>${person.enable} </td>			
-			<td><a href="/admin/updatePerson/${person.id }">update</a></td>			
+			<td><a href="/editPerson/${person.id }">update</a></td>			
 		</tr>
 		</c:forEach>
 	</table>
 </c:if>
-<a href="/admin">go home</a>
+<br/>
+<br/>
+<hr/>
+<br/>
+
+<fieldset>
+<legend>ADD ONE PERSON</legend>
+<form:form modelAttribute="person" action="addPerson">	
+    <table>
+   		<tr>
+			<td><form:label path="firstName">FirstName:</form:label></td>
+			<td><form:input path="firstName" /></td>
+		</tr>
+		<tr>
+			<td><form:label path="lastName">LastName:</form:label></td>
+			<td><form:input path="lastName" /></td>
+		</tr>
+		<tr>
+			<td><form:label path="email">Email:</form:label></td>
+			<td><form:input path="email" /></td>
+		</tr>
+		<tr>
+			<td><form:label path="phone">Phone:</form:label></td>
+			<td><form:input path="phone" /></td>
+		</tr>
+		<tr>
+			<td><form:label path="address.city">City:</form:label></td>
+			<td><form:input path="address.city" /></td>
+		</tr>
+		<tr>
+			<td><form:label path="address.state">State:</form:label></td>
+			<td><form:input path="address.state" /></td>
+		</tr>
+		<tr>
+			<td><form:label path="address.country">Country:</form:label></td>
+			<td><form:input path="address.country" /></td>
+		</tr>
+		<tr>
+			<td><form:label path="address.zipcode">ZIP Code:</form:label></td>
+			<td><form:input path="address.zipcode" /></td>
+		</tr>
+		<tr>
+			<td><form:label path="enable">Enable</form:label></td>
+			<td><form:checkbox path="enable"  /></td>
+		</tr>
+      	<tr>
+        	<td colspan="2"><input type="submit" value="savePerson" /></td>
+      	</tr>
+    </table>
+    </form:form>
+</fieldset>
+  
+<a href="/index">go home</a>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package edu.mum.coffee.rest.client;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +22,11 @@ public class OrderRestClient {
 	RestTemplate restTemplate;
 	
 	public List<Order> getAllOrder(){
-		return Arrays.asList(restTemplate.getForObject(REST_SERVICE_URI + "/order/", Order[].class));
+		Order[] orders = restTemplate.getForObject(REST_SERVICE_URI + "/order/", Order[].class);
+		if (orders != null)
+			return Arrays.asList(orders);
+		
+		return new ArrayList<>();
 	}
 	
 	public Order getOrder(int id){

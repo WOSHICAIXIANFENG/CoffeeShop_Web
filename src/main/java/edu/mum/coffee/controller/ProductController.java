@@ -1,6 +1,7 @@
 package edu.mum.coffee.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,10 +24,17 @@ public class ProductController {
 	@Autowired
 	PersonRestClient personRestClient;
 	
+	@Bean
+	public Product getEmptyProduct() {
+		return new Product();
+	}
+	
 	@RequestMapping(value="/productlist", method=RequestMethod.GET)
 	public String getAllProductList(Model model){
 		model.addAttribute("products", productRestClient.getAllProductList());
-		return "productlist";
+		model.addAttribute("product", new Product());
+		model.addAttribute("productType", ProductType.values());
+		return "listProduct";
 	}
 	
 	@RequestMapping(value="/product/{id}", method=RequestMethod.GET)
@@ -35,10 +43,11 @@ public class ProductController {
 		return "index";
 	}
 	
-	@RequestMapping(value="/editProduct", method=RequestMethod.GET)
-	public String getEditProduct(int id, Model model){
+	@RequestMapping(value="/editProduct/{id}", method=RequestMethod.GET)
+	public String getEditProduct(@PathVariable int id, Model model){
 		model.addAttribute("product", productRestClient.getProduct(id));
-		return "editproduct";
+		model.addAttribute("productType", ProductType.values());
+		return "updateProduct";
 	}
 	
 	@RequestMapping(value="/editProduct", method=RequestMethod.POST)
@@ -52,21 +61,15 @@ public class ProductController {
 		return "redirect:/productlist";
 	}
 	
-	
-	@RequestMapping(value="/createProduct", method=RequestMethod.GET)
-	public String getCreateProduct(){			
-		return "createproduct";
-	}
-	
-	@RequestMapping(value="/createProduct", method=RequestMethod.POST)
+	@RequestMapping(value="/addProduct", method=RequestMethod.POST)
 	public String createProduct(String productName, String description, double price, String productType){			
 		Product newP = new Product(productName, description, price, ProductType.valueOf(productType));
 		productRestClient.createProduct(newP);
 		return "redirect:/productlist";
 	}
 	
-	@RequestMapping(value="/removeProduct", method=RequestMethod.POST)
-	public String removeProduct(int id){			
+	@RequestMapping(value="/removeProduct/{id}", method=RequestMethod.GET)
+	public String removeProduct(@PathVariable int id){			
 		Product oldP = productRestClient.getProduct(id);
 		productRestClient.removeProduct(oldP);
 		return "redirect:/productlist";

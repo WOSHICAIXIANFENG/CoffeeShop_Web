@@ -10,21 +10,21 @@
 </head>
 <body>
 <c:if test="${empty requestScope.orders }">
-	No products!
+	No orders!
 </c:if>
 <c:if test="${!empty requestScope.orders }">
-	<table><tr>
-			<th>id</th>
-			<th>orderDate</th>
-			<th>firstName</th>
-			<th>lastName</th>
-			<th>email</th>
-			<th>phone</th>
-			<th>city</th>
-			<th>state</th>
-			<th>country</th>
-			<th>zipcode</th>
-			<th>enable</th>
+	<table border="1"><tr>
+			<th>Id</th>
+			<th>OrderDate</th>
+			<th>FirstName</th>
+			<th>LastName</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>City</th>
+			<th>State</th>
+			<th>Country</th>
+			<th>ZIP Code</th>
+			<th>Enable</th>
 		</tr>
 		<c:forEach items="${requestScope.orders }" var="order">
 		<tr>
@@ -43,6 +43,61 @@
 		</c:forEach>
 	</table>
 </c:if>
-<a href="/admin">go home</a>
+<br/>
+<hr/>
+<br/>
+<fieldset>
+<legend>ADD ONE ORDER</legend>
+<form:form modelAttribute="order" action="addOrder">
+		<table>
+			<tr>
+				<td><form:label path="orderDate">OrderDate:</form:label></td>
+				<td><form:input path="orderDate" type="date" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="person.firstName">FirstName:</form:label></td>
+				<td><form:input path="person.firstName" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="person.lastName">LastName:</form:label></td>
+				<td><form:input path="person.lastName" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="person.email">Email:</form:label></td>
+				<td><form:input path="person.email" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="person.phone">Phone:</form:label></td>
+				<td><form:input path="person.phone" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="person.enable">Enable</form:label></td>
+				<td><form:checkbox path="person.enable" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="person.address.city">City:</form:label></td>
+				<td><form:input path="person.address.city" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="person.address.state">State:</form:label></td>
+				<td><form:input path="person.address.state" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="person.address.country">Country:</form:label></td>
+				<td><form:input path="person.address.country" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="person.address.zipcode">ZIP Code:</form:label></td>
+				<td><form:input path="person.address.zipcode" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="saveProduct" /></td>
+			</tr>
+		</table>
+	</form:form>
+</fieldset>
+
+	
+<a href="/index">go home</a>
 </body>
 </html>

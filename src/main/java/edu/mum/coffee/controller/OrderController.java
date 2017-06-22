@@ -3,6 +3,7 @@ package edu.mum.coffee.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,10 +32,17 @@ public class OrderController {
 	@Autowired
 	ProductRestClient productRestClient;
 	
+	@Bean
+	public Order getEmptyOrder() {
+		return new Order();
+	}
+	
 	@RequestMapping(value="/orderlist", method= RequestMethod.GET)
 	public String getAllOrder(Model model){
 		model.addAttribute("orders", orderRestClient.getAllOrder());
-		return "orderlist";
+		model.addAttribute("order", new Order());
+		model.addAttribute("person", new Person());
+		return "listOrders";
 	}
 	
 	@RequestMapping(value="/currentorder", method= RequestMethod.GET)
@@ -52,7 +60,7 @@ public class OrderController {
 	public String getMyOrder(Model model, @ModelAttribute("person") Person person){
 		model.addAttribute("orders", orderRestClient.getOrderByPerson(person));
 		model.addAttribute("myorder", "My");
-		return "orderlist";
+		return "listOrders";
 	}
 	
 	@RequestMapping(value="/addOrderline", method = RequestMethod.POST)
@@ -72,9 +80,8 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="/addOrder", method= RequestMethod.POST)
-	public String addOrder(Model model, @ModelAttribute("order") Order order, @ModelAttribute("person") Person person){
-		order.setOrderDate(new Date());
-		order.setPerson(person);		
+	public String addOrder(Model model, @ModelAttribute("order") Order order){
+		System.out.println("Samuel Test order = " + order);
 		orderRestClient.createOrder(order);
 		model.addAttribute("order", new Order());
 		
