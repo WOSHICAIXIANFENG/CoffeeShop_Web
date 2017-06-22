@@ -91,7 +91,7 @@
 				<td><form:input path="person.address.zipcode" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="saveProduct" /></td>
+				<td colspan="2"><input type="submit" value="Save Order" /></td>
 			</tr>
 		</table>
 	</form:form>

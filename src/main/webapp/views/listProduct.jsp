@@ -57,7 +57,7 @@
         <td><form:select path="productType" items="${productType}" /></td>
       </tr>
       <tr>
-        <td colspan="2"><input type="submit" value="saveProduct" /></td>
+        <td colspan="2"><input type="submit" value="Save Product" /></td>
       </tr>
     </table>
     </form:form>

@@ -85,6 +85,6 @@ public class OrderController {
 		orderRestClient.createOrder(order);
 		model.addAttribute("order", new Order());
 		
-		return "redirect:/myorder";
+		return "redirect:/orderlist";
 	}
 }

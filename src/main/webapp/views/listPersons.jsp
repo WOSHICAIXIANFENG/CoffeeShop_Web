@@ -88,7 +88,7 @@
 			<td><form:checkbox path="enable"  /></td>
 		</tr>
       	<tr>
-        	<td colspan="2"><input type="submit" value="savePerson" /></td>
+        	<td colspan="2"><input type="submit" value="Save Person" /></td>
       	</tr>
     </table>
     </form:form>

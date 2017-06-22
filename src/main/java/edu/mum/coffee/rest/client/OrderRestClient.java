@@ -34,7 +34,12 @@ public class OrderRestClient {
 	}
 	
 	public List<Order> getOrderByPerson(Person person){
-		return Arrays.asList(restTemplate.getForObject(REST_SERVICE_URI + "/orderByPerson/" + person.getId(), Order[].class));
+		System.out.println("Samuel Test person = " + person);
+		Order[] orders = restTemplate.getForObject(REST_SERVICE_URI + "/orderByPerson/" + person.getId(), Order[].class);
+		if (orders != null)
+			return Arrays.asList(orders);
+		
+		return new ArrayList<>();
 	}
 	
 	public void createOrder(Order order){
