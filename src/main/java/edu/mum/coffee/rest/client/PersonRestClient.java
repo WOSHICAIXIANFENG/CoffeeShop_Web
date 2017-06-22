@@ -19,7 +19,7 @@ public class PersonRestClient {
 	RestTemplate restTemplate;
 	
 	public void create(Person person){
-		restTemplate.postForObject(REST_SERVICE_URI + "/person", person, Person.class);
+		restTemplate.postForObject(REST_SERVICE_URI + "/person/", person, Person.class);
 	}
 	
 	public Person getPerson(long id){
@@ -27,7 +27,7 @@ public class PersonRestClient {
 	}
 	
 	public List<Person> getAllPerson(){
-		return Arrays.asList(restTemplate.getForObject(REST_SERVICE_URI + "/person", Person[].class));
+		return Arrays.asList(restTemplate.getForObject(REST_SERVICE_URI + "/person/", Person[].class));
 	}
 	
 	public void update(Person person){

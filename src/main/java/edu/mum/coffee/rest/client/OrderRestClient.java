@@ -21,7 +21,7 @@ public class OrderRestClient {
 	RestTemplate restTemplate;
 	
 	public List<Order> getAllOrder(){
-		return Arrays.asList(restTemplate.getForObject(REST_SERVICE_URI + "/order", Order[].class));
+		return Arrays.asList(restTemplate.getForObject(REST_SERVICE_URI + "/order/", Order[].class));
 	}
 	
 	public Order getOrder(int id){
@@ -33,7 +33,7 @@ public class OrderRestClient {
 	}
 	
 	public void createOrder(Order order){
-		restTemplate.postForObject(REST_SERVICE_URI + "/order", order, Order.class);
+		restTemplate.postForObject(REST_SERVICE_URI + "/order/", order, Order.class);
 	}
 	
 	

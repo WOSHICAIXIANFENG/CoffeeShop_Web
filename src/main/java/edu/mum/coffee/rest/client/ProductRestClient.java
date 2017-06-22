@@ -19,7 +19,7 @@ public class ProductRestClient{
 	RestTemplate restTemplate;
 	
 	public List<Product> getAllProductList(){	
-		Product[] products = restTemplate.getForObject(REST_SERVICE_URI + "/product", Product[].class);
+		Product[] products = restTemplate.getForObject(REST_SERVICE_URI + "/product/", Product[].class);
 		List<Product> prods = Arrays.asList(products);
 		return prods;
 	}
@@ -30,7 +30,7 @@ public class ProductRestClient{
 	}
 	
 	public void createProduct(Product product){
-		restTemplate.postForObject(REST_SERVICE_URI + "/product", product, Product.class);
+		restTemplate.postForObject(REST_SERVICE_URI + "/product/", product, Product.class);
 	}
 	
 	public void updateProduct(Product product){
