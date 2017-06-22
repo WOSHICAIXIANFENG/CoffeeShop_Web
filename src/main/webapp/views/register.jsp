@@ -10,10 +10,10 @@
 <body>
 <h3>Welcome to Register</h3>
 <form:form modelAttribute="user" action="/register" method="POST">
-	<form:label path="name">Name:</form:label>
+	<%-- <form:label path="name">Name:</form:label>
 	<form:input path="name" value="${user.name }" type="text" />
-	<br/>
-	<form:label path="email">Email:</form:label>
+	<br/> --%>
+	<form:label path="email">User Email:</form:label>
 	<form:input path="email" value="${user.email }" type="email" />
 	<br/>
 	<form:label path="password">Password:</form:label>

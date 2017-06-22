@@ -56,7 +56,7 @@
 		<table>
 			<tr>
 				<td><form:label path="orderDate">OrderDate:</form:label></td>
-				<td><form:input path="orderDate" type="date" /></td>
+				<td><form:input path="orderDate" type="date" required="true"/></td>
 			</tr>
 			<tr>
 				<td><form:label path="person.firstName">FirstName:</form:label></td>
@@ -68,7 +68,7 @@
 			</tr>
 			<tr>
 				<td><form:label path="person.email">Email:</form:label></td>
-				<td><form:input path="person.email" value="${person.email }"/></td>
+				<td><form:input path="person.email" value="${person.email }" readonly="true"/></td>
 			</tr>
 			<tr>
 				<td><form:label path="person.phone">Phone:</form:label></td>

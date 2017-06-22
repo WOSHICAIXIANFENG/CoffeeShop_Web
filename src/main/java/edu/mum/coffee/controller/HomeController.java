@@ -43,8 +43,10 @@ public class HomeController {
 		    } else if(name.equals("samuel")){
 		    	model.addAttribute("person", personRestClient.getPerson(59));
 		    } else {
-		    	if (model.containsAttribute("person")) {
-		    		//model.re
+		    	if (name.contains("@")) {
+		    		model.addAttribute("person", personRestClient.getPersonByEmail(auth.getName()));
+		    	} else {
+		    		model.addAttribute("person", personRestClient.getPerson(74));
 		    	}
 		    }
 		}
@@ -84,7 +86,7 @@ public class HomeController {
 		auths1.add(authUser);
 		
 		try {
-			User registered = new User(accountDto.getName(), accountDto.getPassword(), auths1);
+			User registered = new User(accountDto.getEmail(), accountDto.getPassword(), auths1);
 			manager.createUser(registered);
 		} catch (Exception e) {
 			e.printStackTrace();

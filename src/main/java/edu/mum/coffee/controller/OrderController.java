@@ -1,6 +1,7 @@
 package edu.mum.coffee.controller;
 
-import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -38,14 +39,22 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="/orderlist", method= RequestMethod.GET)
-	public String getAllOrder(Model model){
-		//@ModelAttribute("person") Person loginPerson
-//		if (loginPerson != null) {
-//			System.out.println("Samuel loginPerson = " + loginPerson);
-//			model.addAttribute("orders", orderRestClient.getOrderByPerson(loginPerson));
-//		} else {
+	public String getAllOrder(Model model, @ModelAttribute("person") Person loginPerson){
+		//
+		if (loginPerson != null) {
+			System.out.println("Samuel loginPerson = " + loginPerson);
+			List<Order> orders = orderRestClient.getAllOrder();
+			List<Order> filters = orders.stream().filter(a -> {
+					Person temp = a.getPerson();
+					if (temp != null && loginPerson.getEmail() != null && temp.getEmail() != null) {
+						return loginPerson.getEmail().toLowerCase().equals(temp.getEmail().toLowerCase());
+					}
+					return false;
+				}).collect(Collectors.toList());
+			model.addAttribute("orders", filters);
+		} else {
 			model.addAttribute("orders", orderRestClient.getAllOrder());
-//		}
+		}
 		
 		model.addAttribute("order", new Order());
 		//model.addAttribute("person", new Person());
