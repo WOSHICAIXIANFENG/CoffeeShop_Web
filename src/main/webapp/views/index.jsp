@@ -29,5 +29,10 @@
 <sec:authorize access="isAuthenticated()">
 <a href="/logout">Logout</a><br/><br/>
 </sec:authorize>
+
+<sec:authorize access="isAnonymous()">
+<a href="/register">Register New User</a><br/><br/>
+</sec:authorize>
+<br/>
 </body>
 </html>
