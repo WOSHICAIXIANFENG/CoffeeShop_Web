@@ -39,9 +39,16 @@ public class OrderController {
 	
 	@RequestMapping(value="/orderlist", method= RequestMethod.GET)
 	public String getAllOrder(Model model){
-		model.addAttribute("orders", orderRestClient.getAllOrder());
+		//@ModelAttribute("person") Person loginPerson
+//		if (loginPerson != null) {
+//			System.out.println("Samuel loginPerson = " + loginPerson);
+//			model.addAttribute("orders", orderRestClient.getOrderByPerson(loginPerson));
+//		} else {
+			model.addAttribute("orders", orderRestClient.getAllOrder());
+//		}
+		
 		model.addAttribute("order", new Order());
-		model.addAttribute("person", new Person());
+		//model.addAttribute("person", new Person());
 		return "listOrders";
 	}
 	
@@ -82,7 +89,9 @@ public class OrderController {
 	@RequestMapping(value="/addOrder", method= RequestMethod.POST)
 	public String addOrder(Model model, @ModelAttribute("order") Order order){
 		System.out.println("Samuel Test order = " + order);
+		
 		orderRestClient.createOrder(order);
+		
 		model.addAttribute("order", new Order());
 		
 		return "redirect:/orderlist";

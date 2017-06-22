@@ -27,6 +27,10 @@ public class Person {
 		this.phone = phone;
 		this.enable = enable;
 	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public long getId() {
 		return id;

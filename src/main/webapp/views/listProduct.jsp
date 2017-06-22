@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,9 +27,11 @@
 			<td>${product.productName} </td>			
 			<td>${product.description} </td>			
 			<td>${product.price} </td>			
-			<td>${product.productType} </td>			
-			<td><a href="/removeProduct/${product.id }">delete</a></td>			
-			<td><a href="/editProduct/${product.id }">update</a></td>			
+			<td>${product.productType} </td>	
+			<sec:authorize access="hasRole('ADMIN')">		
+				<td><a href="/removeProduct/${product.id }">delete</a></td>			
+				<td><a href="/editProduct/${product.id }">update</a></td>	
+			</sec:authorize>		
 		</tr>
 		</c:forEach>
 	</table>
@@ -36,6 +39,7 @@
 <br/>
 <hr/>
 <br/>
+<sec:authorize access="hasRole('ADMIN')">		
 <fieldset>
 <legend>ADD ONE PRODUCT</legend>
 <form:form modelAttribute="product" action="addProduct">	
@@ -62,8 +66,8 @@
     </table>
     </form:form>
 </fieldset>
-
-  
+</sec:authorize>
+<br/>  
 <a href="/index">go home</a>
 </body>
 </html>

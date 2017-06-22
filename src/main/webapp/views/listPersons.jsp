@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,8 +37,10 @@
 			<td>${person.address.state} </td>			
 			<td>${person.address.country} </td>			
 			<td>${person.address.zipcode} </td>			
-			<td>${person.enable} </td>			
-			<td><a href="/editPerson/${person.id }">update</a></td>			
+			<td>${person.enable} </td>	
+			<sec:authorize access="hasRole('ADMIN')">			
+				<td><a href="/editPerson/${person.id }">update</a></td>	
+			</sec:authorize>		
 		</tr>
 		</c:forEach>
 	</table>
@@ -46,7 +49,7 @@
 <br/>
 <hr/>
 <br/>
-
+<sec:authorize access="hasRole('ADMIN')">	
 <fieldset>
 <legend>ADD ONE PERSON</legend>
 <form:form modelAttribute="person" action="addPerson">	
@@ -93,7 +96,8 @@
     </table>
     </form:form>
 </fieldset>
-  
+</sec:authorize>
+<br />  
 <a href="/index">go home</a>
 </body>
 </html>
