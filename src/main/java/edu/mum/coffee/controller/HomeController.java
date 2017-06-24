@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.WebRequest;
 
 import edu.mum.coffee.domain.Order;
+import edu.mum.coffee.domain.Person;
 import edu.mum.coffee.domain.UserDto;
 import edu.mum.coffee.rest.client.PersonRestClient;
 
@@ -44,7 +45,12 @@ public class HomeController {
 		    	model.addAttribute("person", personRestClient.getPerson(59));
 		    } else {
 		    	if (name.contains("@")) {
-		    		model.addAttribute("person", personRestClient.getPersonByEmail(auth.getName()));
+		    		Person dest = personRestClient.getPersonByEmail(auth.getName());
+		    		if (dest != null) {
+		    			model.addAttribute("person", dest);
+		    		} else {
+		    			model.addAttribute("person", personRestClient.getPerson(74));
+		    		}
 		    	} else {
 		    		model.addAttribute("person", personRestClient.getPerson(74));
 		    	}
@@ -79,7 +85,7 @@ public class HomeController {
 	private InMemoryUserDetailsManager manager;
 	
 	@PostMapping({"/register"})
-	public String registerUser( @ModelAttribute("user") @Valid UserDto accountDto, 
+	public String registerUser(@ModelAttribute("user") UserDto accountDto, 
 			  BindingResult result, WebRequest request, Errors errors) {
 		SimpleGrantedAuthority authUser = new SimpleGrantedAuthority("ROLE_USER");
 		List<SimpleGrantedAuthority> auths1 = new ArrayList<>();

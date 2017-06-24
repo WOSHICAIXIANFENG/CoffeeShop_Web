@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<sec:authorize access="hasRole('ADMIN')">	
 <c:if test="${empty requestScope.persons }">
 	No Persons!
 </c:if>
@@ -45,6 +46,7 @@
 		</c:forEach>
 	</table>
 </c:if>
+</sec:authorize>
 <br/>
 <br/>
 <hr/>

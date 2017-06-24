@@ -13,8 +13,12 @@
 
 <a href="/productlist">Products Dashboard</a><br/><br/>
 <hr/>
-<sec:authorize access="hasRole('ADMIN') || hasRole('USER')">	
+<sec:authorize access="hasRole('ADMIN')">	
 <a href="/personlist">Persons Dashboard</a><br/><br/>
+<hr/>
+</sec:authorize>
+<sec:authorize access="hasRole('USER')">	
+<a href="/editPerson/${person.id}">Update Profile + ${person.id}</a><br/><br/>
 <hr/>
 </sec:authorize>
 <sec:authorize access="hasRole('ADMIN') || hasRole('USER')">
